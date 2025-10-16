@@ -29,7 +29,7 @@ trait EnumMethods
     {
         return collect(self::values())->random();
     }
-    
+
     /**
      * Get all keys of the enum.
      */
@@ -45,7 +45,7 @@ trait EnumMethods
     {
         return collect(self::cases())->pluck('value')->toArray();
     }
-    
+
     /**
      * Get the translatable name of the enum.
      */

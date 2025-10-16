@@ -2,11 +2,11 @@
 
 namespace Common;
 
+use Common\Channel\StorageChannel;
+use Common\Support\Macros;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
-use Common\Channel\StorageChannel;
-use Common\Support\Macros;
 use Scripts\Console\Commands\RenameMigrationsCommand;
 
 class ServiceProvider extends LaravelServiceProvider

@@ -8,9 +8,9 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
-use Illuminate\Support\Str;
 use Common\Support\TwoFactor\RecoveryCode;
 use Common\Support\TwoFactor\TwoFactorAuthentication;
+use Illuminate\Support\Str;
 
 trait HasTwoFactor
 {

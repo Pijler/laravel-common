@@ -2,11 +2,11 @@
 
 namespace Common\Support;
 
+use Common\DTO\ActionData;
+use Common\Enum\Alert;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Testing\TestResponse;
-use Common\DTO\ActionData;
-use Common\Enum\Alert;
 
 class Macros
 {

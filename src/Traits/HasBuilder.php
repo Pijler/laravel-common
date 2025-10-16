@@ -3,7 +3,6 @@
 namespace Common\Traits;
 
 use Closure;
-use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Database\Eloquent\Builder;
 
 trait HasBuilder
@@ -12,6 +11,14 @@ trait HasBuilder
      * The callback that should be used to create builder.
      */
     public static ?Closure $builderCallback;
+
+    /**
+     * Set a callback that should be used to generate builder class.
+     */
+    public static function builderUsing($callback): void
+    {
+        static::$builderCallback = $callback;
+    }
 
     /**
      * Create a new Eloquent query builder for the model.

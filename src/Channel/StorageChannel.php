@@ -21,6 +21,14 @@ class StorageChannel
     public static ?Closure $storagePathCallback;
 
     /**
+     * Set a callback that should be used to create storage path.
+     */
+    public static function storagePathUsing($callback): void
+    {
+        static::$storagePathCallback = $callback;
+    }
+
+    /**
      * Send the given notification.
      */
     public function send($notifiable, Notification $notification): void

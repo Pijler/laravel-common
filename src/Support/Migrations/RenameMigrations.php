@@ -2,9 +2,9 @@
 
 namespace Common\Support\Migrations;
 
+use Common\Support\Action;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Common\Support\Action;
 use Symfony\Component\Finder\SplFileInfo;
 
 class RenameMigrations extends Action

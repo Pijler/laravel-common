@@ -2,8 +2,8 @@
 
 namespace Scripts\Console\Commands;
 
-use Illuminate\Console\Command;
 use Common\Support\Migrations\RenameMigrations;
+use Illuminate\Console\Command;
 
 class RenameMigrationsCommand extends Command
 {

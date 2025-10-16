@@ -15,6 +15,14 @@ class CustomPathGenerator implements PathGenerator
      */
     public static ?Closure $basePathCallback;
 
+    /**
+     * Set a callback that should be used to create base path.
+     */
+    public static function basePathUsing($callback): void
+    {
+        static::$basePathCallback = $callback;
+    }
+
     /*
      * Get the path for the given media, relative to the root storage path.
      */
@@ -47,7 +55,7 @@ class CustomPathGenerator implements PathGenerator
         if (static::$basePathCallback) {
             return call_user_func(static::$basePathCallback, $media);
         }
-        
+
         $environment = App::environment();
 
         $prefix = config('media-library.prefix', '');
