@@ -1,0 +1,16 @@
+* text=auto
+
+*.blade.php diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.php diff=php
+
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/README.md export-ignore
+/composer.lock export-ignore
+/phpunit.xml export-ignore
+/tests export-ignore
+/workbench export-ignore
