@@ -13,15 +13,13 @@ class Handler
     /**
      * Render an exception into an HTTP response.
      */
-    public function render(): callable
+    public function render(Response $response, Throwable $exception, Request $request): Response
     {
-        return function (Response $response, Throwable $exception, Request $request) {
-            if (! $this->checkAlertException($request, $exception)) {
-                return $response;
-            }
+        if (! $this->checkAlertException($request, $exception)) {
+            return $response;
+        }
 
-            return $this->redirectWithAlert($exception);
-        };
+        return $this->redirectWithAlert($exception);
     }
 
     /**
