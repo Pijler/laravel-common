@@ -18,7 +18,7 @@ class StorageChannel
     /**
      * The callback that should be used to get storage path.
      */
-    public static ?Closure $storagePathCallback;
+    public static ?Closure $storagePathCallback = null;
 
     /**
      * Set a callback that should be used to create storage path.

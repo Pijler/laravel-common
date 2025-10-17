@@ -13,7 +13,7 @@ class CustomPathGenerator implements PathGenerator
     /**
      * The callback that should be used to get base path.
      */
-    public static ?Closure $basePathCallback;
+    public static ?Closure $basePathCallback = null;
 
     /**
      * Set a callback that should be used to create base path.

@@ -10,7 +10,7 @@ trait HasBuilder
     /**
      * The callback that should be used to create builder.
      */
-    public static ?Closure $builderCallback;
+    public static ?Closure $builderCallback = null;
 
     /**
      * Set a callback that should be used to generate builder class.
