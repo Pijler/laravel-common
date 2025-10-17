@@ -1,6 +1,6 @@
 <?php
 
-namespace Scripts\Console\Commands;
+namespace Common\Commands;
 
 use Common\Support\Migrations\RenameMigrations;
 use Illuminate\Console\Command;
