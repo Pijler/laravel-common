@@ -131,6 +131,16 @@ trait EnumMethods
     }
 
     /**
+     * Get the enum case by the given case or value.
+     */
+    public static function find(mixed $enum): ?self
+    {
+        $value = self::get($enum);
+
+        return self::fromValue($value);
+    }
+
+    /**
      * Get the enum value by the given case or value.
      */
     public static function get(mixed $enum): mixed
