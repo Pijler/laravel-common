@@ -13,19 +13,19 @@ class Handler
     /**
      * Render an exception into an HTTP response.
      */
-    public function render(Response $response, Throwable $exception, Request $request): Response
+    public static function render(Response $response, Throwable $exception, Request $request): Response
     {
-        if (! $this->checkAlertException($request, $exception)) {
+        if (! self::checkAlertException($request, $exception)) {
             return $response;
         }
 
-        return $this->redirectWithAlert($exception);
+        return self::redirectWithAlert($exception);
     }
 
     /**
      * Check if exception is an alert exception.
      */
-    private function checkAlertException(Request $request, Throwable $exception): bool
+    private static function checkAlertException(Request $request, Throwable $exception): bool
     {
         return ! config('app.debug')
             && ! $request->wantsJson()
@@ -35,7 +35,7 @@ class Handler
     /**
      * Redirect with an alert.
      */
-    private function redirectWithAlert(Throwable $exception): RedirectResponse
+    private static function redirectWithAlert(Throwable $exception): RedirectResponse
     {
         $action = match (class_basename($exception)) {
             'InfoException' => Alert::INFO,
