@@ -73,7 +73,7 @@ $qrCode = $user->twoFactorQrCodeSvg();
 $url = $user->twoFactorQrCodeUrl();
 ```
 
-### 📱 User Agent Detection
+#### 📱 User Agent Detection
 
 Class for detecting browser and device information:
 
