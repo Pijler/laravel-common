@@ -23,6 +23,16 @@ class Handler
     }
 
     /**
+     * Redirect with an alert.
+     */
+    private static function redirectWithAlert(Throwable $exception): RedirectResponse
+    {
+        $action = alert_exception_type($exception);
+
+        return back()->message($exception->getMessage(), $action);
+    }
+
+    /**
      * Check if exception is an alert exception.
      */
     private static function checkAlertException(Request $request, Throwable $exception): bool
@@ -30,19 +40,5 @@ class Handler
         return ! config('app.debug')
             && ! $request->wantsJson()
             && alert_check_exception($exception);
-    }
-
-    /**
-     * Redirect with an alert.
-     */
-    private static function redirectWithAlert(Throwable $exception): RedirectResponse
-    {
-        $action = match (class_basename($exception)) {
-            'InfoException' => Alert::INFO,
-            'ErrorException' => Alert::ERROR,
-            'WarningException' => Alert::WARNING,
-        };
-
-        return back()->message($exception->getMessage(), $action);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use Common\Enum\Alert;
 use Common\Exceptions\Alert\ErrorException;
 use Common\Exceptions\Alert\InfoException;
 use Common\Exceptions\Alert\WarningException;
@@ -25,5 +26,19 @@ if (! function_exists('alert_check_exception')) {
         return $exception instanceof InfoException
             || $exception instanceof ErrorException
             || $exception instanceof WarningException;
+    }
+}
+
+if (! function_exists('alert_exception_type')) {
+    /**
+     * Get the alert exception type.
+     */
+    function alert_exception_type(Throwable $exception): Alert
+    {
+        return match (class_basename($exception)) {
+            'InfoException' => Alert::INFO,
+            'ErrorException' => Alert::ERROR,
+            'WarningException' => Alert::WARNING,
+        };
     }
 }
