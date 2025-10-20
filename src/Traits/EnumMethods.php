@@ -4,6 +4,8 @@ namespace Common\Traits;
 
 use Illuminate\Support\Str;
 
+use function Illuminate\Support\enum_value;
+
 trait EnumMethods
 {
     /**
@@ -67,13 +69,29 @@ trait EnumMethods
     }
 
     /**
+     * Check if this enum case is not the same as the given one.
+     */
+    public function isNot(mixed $enum): bool
+    {
+        return ! $this->is($enum);
+    }
+
+    /**
      * Check if this enum case is the same as the given one.
      */
     public function is(mixed $enum): bool
     {
-        $enum = self::get($enum);
+        $enum = enum_value($enum);
 
         return $this->value === $enum;
+    }
+
+    /**
+     * Check if this enum case is not one of the given ones.
+     */
+    public function notIn(array $enums): bool
+    {
+        return ! $this->in($enums);
     }
 
     /**
@@ -81,7 +99,7 @@ trait EnumMethods
      */
     public function in(array $enums): bool
     {
-        $enums = collect($enums)->transform(fn ($enum) => self::get($enum));
+        $enums = collect($enums)->transform(fn ($enum) => enum_value($enum));
 
         return $enums->contains($this->value);
     }
@@ -89,21 +107,21 @@ trait EnumMethods
     /**
      * Get the enum case by the given key.
      */
-    public static function fromKey(mixed $key): ?self
+    public static function fromKey(mixed $key, mixed $default = null): ?self
     {
         return collect(self::cases())->first(function ($case) use ($key) {
             return data_get($case, 'name') === $key;
-        });
+        }, $default);
     }
 
     /**
      * Get the enum case by the given value.
      */
-    public static function fromValue(mixed $value): ?self
+    public static function fromValue(mixed $value, mixed $default = null): ?self
     {
         return collect(self::cases())->first(function ($case) use ($value) {
             return data_get($case, 'value') === $value;
-        });
+        }, $default);
     }
 
     /**
@@ -111,10 +129,6 @@ trait EnumMethods
      */
     public static function existKey(mixed $key): bool
     {
-        if (is_null($key)) {
-            return true;
-        }
-
         return in_array($key, self::keys(), true);
     }
 
@@ -123,30 +137,6 @@ trait EnumMethods
      */
     public static function existValue(mixed $value): bool
     {
-        if (is_null($value)) {
-            return true;
-        }
-
         return in_array($value, self::values(), true);
-    }
-
-    /**
-     * Get the enum case by the given case or value.
-     */
-    public static function find(mixed $enum): ?self
-    {
-        $value = self::get($enum);
-
-        return self::fromValue($value);
-    }
-
-    /**
-     * Get the enum value by the given case or value.
-     */
-    public static function get(mixed $enum): mixed
-    {
-        $value = $enum instanceof self ? $enum->value : $enum;
-
-        return self::existValue($value) ? $value : null;
     }
 }
