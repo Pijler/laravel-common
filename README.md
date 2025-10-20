@@ -38,7 +38,10 @@ class CreateUserAction extends Action
 }
 
 // Usage
-$user = CreateUserAction::execute('João Pedro', 'joao@example.com');
+$user = CreateUserAction::execute(
+    name: 'João Pedro',
+    email: 'joao@example.com',
+);
 
 // With conditions
 CreateUserAction::executeIf($shouldCreate, 'João Pedro', 'joao@example.com');
@@ -105,9 +108,9 @@ use Common\Exceptions\Alert\ErrorException;
 use Common\Exceptions\Alert\WarningException;
 
 // Throw alert exceptions
-InfoException::make('Important information');
-ErrorException::make('Critical error');
-WarningException::make('Attention required');
+InfoException::make('Info Message!');
+ErrorException::make('Error Message!');
+WarningException::make('Warning Message!');
 
 // Helpers to check exceptions
 alert_check_exception($exception); // bool
@@ -151,10 +154,10 @@ User::firstRandom();
 
 ```php
 // Alert messages
-return redirect()->info('Important information');
-return redirect()->error('Error occurred');
-return redirect()->success('Operation completed successfully');
-return redirect()->warning('Attention required');
+return redirect()->info('Info Message!');
+return redirect()->error('Error Message!');
+return redirect()->success('Success Message!');
+return redirect()->warning('Warning Message!');
 
 // Custom message
 return redirect()->message('Message text', Alert::INFO);
@@ -171,13 +174,17 @@ return redirect()->action(ActionData::from([
 
 ```php
 // Message assertions
-$response->assertInfoMessage('Important information');
-$response->assertErrorMessage('Error occurred');
-$response->assertSuccessMessage('Success');
-$response->assertWarningMessage('Attention');
+$response->assertInfoMessage('Info Message!');
+$response->assertErrorMessage('Error Message!');
+$response->assertSuccessMessage('Success Message!');
+$response->assertWarningMessage('Warning Message!');
 
 // Action assertion
-$response->assertAction(ActionData::make('action_name', ['param' => 'value']));
+$response->assertAction(ActionData::from([
+    'text' => 'Undo',
+    'method' => 'patch',
+    'url' => "/users/{$user->id}/restore",
+]));
 ```
 
 ##### Inertia.js (if available)
@@ -185,15 +192,15 @@ $response->assertAction(ActionData::make('action_name', ['param' => 'value']));
 ```php
 // Automatic filters
 return Inertia::render('Users/Index')->filters([
+    'role' => 'admin',
     'status' => 'active',
-    'role' => 'admin'
 ]);
 
 // Pagination parameters
 return Inertia::render('Users/Index')->params([
     'page' => 1,
+    'limit' => 10,
     'sort' => 'name',
-    'limit' => 10
 ]);
 ```
 
