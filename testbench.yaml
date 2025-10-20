@@ -1,0 +1,18 @@
+laravel: "./workbench"
+
+providers:
+  - Common\ServiceProvider
+  - Spatie\MediaLibrary\MediaLibraryServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
+
+migrations:
+  - workbench/database/migrations
+
+seeders:
+  - Workbench\Database\Seeders\DatabaseSeeder
+
+workbench:
+  start: "/"
+  install: true
+  discovers:
+    factories: true
