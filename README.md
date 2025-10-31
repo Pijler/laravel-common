@@ -209,7 +209,7 @@ return Inertia::render('Users/Index')->params([
 ##### Rename Migrations Command
 
 ```bash
-php artisan common:rename-migrations
+php artisan migrate:rename
 ```
 
 This command renames migration files to follow a consistent pattern.
