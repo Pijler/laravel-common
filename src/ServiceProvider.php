@@ -3,6 +3,8 @@
 namespace Common;
 
 use Common\Channel\StorageChannel;
+use Common\Commands\FileDecryptCommand;
+use Common\Commands\FileEncryptCommand;
 use Common\Commands\RenameMigrationsCommand;
 use Common\Support\Macros;
 use Illuminate\Notifications\ChannelManager;
@@ -20,6 +22,8 @@ class ServiceProvider extends LaravelServiceProvider
 
         if ($this->app->runningInConsole()) {
             $this->commands([
+                FileDecryptCommand::class,
+                FileEncryptCommand::class,
                 RenameMigrationsCommand::class,
             ]);
         }

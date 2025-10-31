@@ -10,7 +10,7 @@ class RenameMigrationsCommand extends Command
     /**
      * The name and signature of the console command.
      */
-    protected $signature = 'common:rename-migrations';
+    protected $signature = 'migrate:rename';
 
     /**
      * The console command description.
