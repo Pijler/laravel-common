@@ -214,6 +214,90 @@ php artisan migrate:rename
 
 This command renames migration files to follow a consistent pattern.
 
+#### 🔒 File Encryption Commands
+
+Commands for encrypting and decrypting files:
+
+##### Encrypt File Command
+
+```bash
+php artisan file:encrypt --filename=.npmrc
+```
+
+**Options:**
+
+- `--key`: The encryption key (if not provided, a random key will be generated)
+- `--cipher`: The encryption cipher (default: `AES-256-CBC`)
+- `--path`: Path to write the encrypted file (default: `base_path()`)
+- `--filename`: Filename of the file to encrypt (required)
+- `--prune`: Delete the original file after encryption
+- `--force`: Overwrite the existing encrypted file
+
+**Interactive Mode:**
+If run interactively without options, the command will prompt for:
+
+- Filename to encrypt
+- Encryption key (with option to generate a random key or provide your own)
+
+**Examples:**
+
+```bash
+# Encrypt a file with automatic key generation
+php artisan file:encrypt --filename=.npmrc
+
+# Encrypt with a specific key
+php artisan file:encrypt --filename=.npmrc --key="your-encryption-key"
+
+# Encrypt and delete original file
+php artisan file:encrypt --filename=.npmrc --prune
+
+# Encrypt with custom cipher
+php artisan file:encrypt --filename=.npmrc --cipher=AES-128-CBC
+
+# Encrypt and force overwrite existing encrypted file
+php artisan file:encrypt --filename=.npmrc --force
+```
+
+The encrypted file will be saved with `.encrypted` extension (e.g., `.npmrc.encrypted`).
+
+##### Decrypt File Command
+
+```bash
+php artisan file:decrypt --filename=.npmrc.encrypted
+```
+
+**Options:**
+
+- `--key`: The decryption key (if not provided, will use `LARAVEL_ENV_ENCRYPTION_KEY` from environment)
+- `--cipher`: The encryption cipher (default: `AES-256-CBC`)
+- `--path`: Path to write the decrypted file (default: `base_path()`)
+- `--filename`: Filename of the encrypted file to decrypt (required, must end with `.encrypted`)
+- `--force`: Overwrite the existing decrypted file
+
+**Interactive Mode:**
+If run interactively without options, the command will prompt for:
+
+- Filename to decrypt
+- Decryption key (if not available in environment)
+
+**Examples:**
+
+```bash
+# Decrypt a file (uses LARAVEL_ENV_ENCRYPTION_KEY from .env)
+php artisan file:decrypt --filename=.npmrc.encrypted
+
+# Decrypt with a specific key
+php artisan file:decrypt --filename=.npmrc.encrypted --key="your-encryption-key"
+
+# Decrypt with base64 encoded key
+php artisan file:decrypt --filename=.npmrc.encrypted --key="base64:encoded-key"
+
+# Decrypt and force overwrite existing file
+php artisan file:decrypt --filename=.npmrc.encrypted --force
+```
+
+The decrypted file will be saved without the `.encrypted` extension.
+
 #### 🎨 Enum Helpers
 
 Trait for enums with useful methods:
