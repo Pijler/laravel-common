@@ -11,6 +11,7 @@ use Common\Middleware\ProtectFromImpersonation;
 use Common\Support\Macros;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
@@ -23,6 +24,8 @@ class ServiceProvider extends LaravelServiceProvider
     {
         Macros::boot();
 
+        $this->bootGates();
+        
         $this->bootMiddlewares();
 
         if ($this->app->runningInConsole()) {
@@ -63,5 +66,23 @@ class ServiceProvider extends LaravelServiceProvider
 
         $router->aliasMiddleware('impersonate', HandleUserImpersonate::class);
         $router->aliasMiddleware('protect.impersonate', ProtectFromImpersonation::class);
+    }
+
+    /**
+     * Boot the gates for two-factor authentication.
+     */
+    private function bootGates(): void
+    {
+        Gate::define('two-factor-is-enabled', function ($user) {
+            return $user->two_factor_secret && ! $user->two_factor_confirmed_at;
+        });
+
+        Gate::define('two-factor-is-confirmed', function ($user) {
+            return $user->two_factor_secret && $user->two_factor_confirmed_at;
+        });
+
+        Gate::define('two-factor-is-disabled', function ($user) {
+            return ! $user->two_factor_secret || ! $user->two_factor_confirmed_at;
+        });
     }
 }

@@ -113,8 +113,8 @@ ErrorException::make('Error Message!');
 WarningException::make('Warning Message!');
 
 // Helpers to check exceptions
-alert_check_exception($exception); // bool
-alert_throw_exception($exception); // void
+check_exception($exception); // bool
+throw_exception($exception); // void
 ```
 
 #### 📨 Storage Channel
