@@ -15,4 +15,5 @@ workbench:
   start: "/"
   install: true
   discovers:
+    web: true
     factories: true
