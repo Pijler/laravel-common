@@ -2,6 +2,7 @@
 
 namespace Workbench\App\Models;
 
+use Common\Traits\HasImpersonate;
 use Common\Traits\HasTwoFactor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class User extends Authenticatable
 {
     use HasFactory;
+    use HasImpersonate;
     use HasTwoFactor;
 
     /**
