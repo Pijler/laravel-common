@@ -4,10 +4,11 @@ use Common\Enum\Alert;
 use Common\Exceptions\Alert\ErrorException;
 use Common\Exceptions\Alert\InfoException;
 use Common\Exceptions\Alert\WarningException;
+use Illuminate\Validation\ValidationException;
 
 if (! function_exists('alert_throw_exception')) {
     /**
-     * Throw if the exception is an alert exception.
+     * Throw if the exception is an alert or validation exception.
      */
     function alert_throw_exception(Throwable $exception): void
     {
@@ -19,13 +20,14 @@ if (! function_exists('alert_throw_exception')) {
 
 if (! function_exists('alert_check_exception')) {
     /**
-     * Check if the exception is an alert exception.
+     * Check if the exception is an alert or validation exception.
      */
     function alert_check_exception(Throwable $exception): bool
     {
         return $exception instanceof InfoException
             || $exception instanceof ErrorException
-            || $exception instanceof WarningException;
+            || $exception instanceof WarningException
+            || $exception instanceof ValidationException;
     }
 }
 
