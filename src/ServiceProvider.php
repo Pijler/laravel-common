@@ -25,7 +25,7 @@ class ServiceProvider extends LaravelServiceProvider
         Macros::boot();
 
         $this->bootGates();
-        
+
         $this->bootMiddlewares();
 
         if ($this->app->runningInConsole()) {
