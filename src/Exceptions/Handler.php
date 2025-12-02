@@ -27,7 +27,7 @@ class Handler
      */
     private static function redirectWithAlert(Throwable $exception): RedirectResponse
     {
-        $action = alert_exception_type($exception);
+        $action = exception_type($exception);
 
         return back()->message($exception->getMessage(), $action);
     }
@@ -39,6 +39,6 @@ class Handler
     {
         return ! config('app.debug')
             && ! $request->wantsJson()
-            && alert_check_exception($exception);
+            && check_exception($exception);
     }
 }
