@@ -44,7 +44,7 @@ class TwoFactorAuthentication
     {
         $secret = decrypt($user->two_factor_secret);
 
-        $cache = Cache::get($key = "cache.two-factor.code.{$code}");
+        $cache = Cache::get($key = "cache::two-factor::code.{$code}");
 
         $timestamp = $this->engine->verifyKeyNewer($secret, $code, $cache);
 
