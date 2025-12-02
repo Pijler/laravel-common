@@ -6,8 +6,11 @@ use Common\Channel\StorageChannel;
 use Common\Commands\FileDecryptCommand;
 use Common\Commands\FileEncryptCommand;
 use Common\Commands\RenameMigrationsCommand;
+use Common\Middleware\HandleUserImpersonate;
+use Common\Middleware\ProtectFromImpersonation;
 use Common\Support\Macros;
 use Illuminate\Notifications\ChannelManager;
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
@@ -19,6 +22,8 @@ class ServiceProvider extends LaravelServiceProvider
     public function boot(): void
     {
         Macros::boot();
+
+        $this->bootMiddlewares();
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -47,5 +52,16 @@ class ServiceProvider extends LaravelServiceProvider
                 return $app->make(StorageChannel::class);
             });
         });
+    }
+
+    /**
+     * Boot the middlewares for impersonation.
+     */
+    private function bootMiddlewares(): void
+    {
+        $router = $this->app->make(Router::class);
+
+        $router->aliasMiddleware('impersonate', HandleUserImpersonate::class);
+        $router->aliasMiddleware('protect.impersonate', ProtectFromImpersonation::class);
     }
 }
