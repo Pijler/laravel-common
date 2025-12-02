@@ -8,6 +8,7 @@ use Common\Commands\FileEncryptCommand;
 use Common\Commands\RenameMigrationsCommand;
 use Common\Support\Macros;
 use Illuminate\Notifications\ChannelManager;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
 
@@ -19,6 +20,8 @@ class ServiceProvider extends LaravelServiceProvider
     public function boot(): void
     {
         Macros::boot();
+
+        $this->bootGates();
 
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -46,6 +49,24 @@ class ServiceProvider extends LaravelServiceProvider
             $service->extend('storage', function ($app) {
                 return $app->make(StorageChannel::class);
             });
+        });
+    }
+
+    /**
+     * Boot the gates for two-factor authentication.
+     */
+    private function bootGates(): void
+    {
+        Gate::define('two-factor-is-enabled', function ($user) {
+            return $user->two_factor_secret && ! $user->two_factor_confirmed_at;
+        });
+
+        Gate::define('two-factor-is-confirmed', function ($user) {
+            return $user->two_factor_secret && $user->two_factor_confirmed_at;
+        });
+
+        Gate::define('two-factor-is-disabled', function ($user) {
+            return ! $user->two_factor_secret || ! $user->two_factor_confirmed_at;
         });
     }
 }
