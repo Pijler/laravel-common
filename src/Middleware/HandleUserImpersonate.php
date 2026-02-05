@@ -30,9 +30,21 @@ class HandleUserImpersonate
         $admin = $request->user();
 
         if ($id = $request->session()->get('session::user::impersonate')) {
+            $this->ignoreDeviceListener();
+
             Auth::onceUsingId($id);
 
             Session::put('session::super::user', $admin->id);
+        }
+    }
+
+    /**
+     * Ignore the device listener.
+     */
+    private function ignoreDeviceListener(): void
+    {
+        if (class_exists(\UserDevices\DeviceCreator::class)) {
+            \UserDevices\DeviceCreator::ignoreListener();
         }
     }
 }
