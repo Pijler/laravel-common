@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "08c95d5619e1904c55d574669a0a48a6",
+    "content-hash": "2c6fb62953daa94a42354cc757d3e435",
     "packages": [
         {
             "name": "brick/math",
@@ -8971,6 +8971,66 @@
             "time": "2025-10-03T04:28:03+00:00"
         },
         {
+            "name": "pijler/user-devices",
+            "version": "v0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pijler/user-devices.git",
+                "reference": "7582800f19a671247ab233d029e64bd2de2a4cbb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pijler/user-devices/zipball/7582800f19a671247ab233d029e64bd2de2a4cbb",
+                "reference": "7582800f19a671247ab233d029e64bd2de2a4cbb",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^11.0|^12.0",
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.25",
+                "orchestra/testbench": "*",
+                "pestphp/pest": "^4.1",
+                "pestphp/pest-plugin-laravel": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "UserDevices\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "UserDevices\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "João Pedro Lopes",
+                    "email": "joaopalopes24@gmail.com"
+                }
+            ],
+            "description": "This package provides support for managing user devices.",
+            "keywords": [
+                "Devices",
+                "laravel",
+                "package",
+                "user-devices"
+            ],
+            "support": {
+                "issues": "https://github.com/Pijler/user-devices/issues",
+                "source": "https://github.com/Pijler/user-devices/tree/v0.3.0"
+            },
+            "time": "2026-02-05T14:07:52+00:00"
+        },
+        {
             "name": "pragmarx/google2fa",
             "version": "v9.0.0",
             "source": {
@@ -10810,12 +10870,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.2"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }
