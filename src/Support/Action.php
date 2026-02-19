@@ -2,16 +2,42 @@
 
 namespace Common\Support;
 
+use Common\Support\Testing\ActionFake;
 use ReflectionClass;
 
 abstract class Action
 {
+    /**
+     * The fake instance when actions are being faked.
+     */
+    protected static ?ActionFake $fake = null;
+
+    /**
+     * Whether actions are currently being faked.
+     */
+    public static function isFake(): bool
+    {
+        return filled(static::$fake);
+    }
+
+    /**
+     * Restore the real actions (clear the fake). Call in tearDown/afterEach if needed.
+     */
+    public static function restore(): void
+    {
+        static::$fake = null;
+    }
+
     /**
      * Execute the action instance.
      */
     public static function execute(...$args)
     {
         $parameters = static::normalize(static::class, $args);
+
+        if (filled(static::$fake)) {
+            return static::$fake->execute(static::class, $parameters);
+        }
 
         return resolve(static::class, $parameters)->handle();
     }
@@ -33,6 +59,50 @@ abstract class Action
     {
         if (! $boolean) {
             return static::execute(...$args);
+        }
+    }
+
+    /**
+     * Fake the return of handle() for the given actions in tests.
+     * Each callback receives the normalized constructor parameters; its return (or throw) replaces handle().
+     * Actions not in the map run for real.
+     */
+    public static function fake(array $actions = []): ActionFake
+    {
+        return tap(new ActionFake(app(), $actions), function (ActionFake $fake) {
+            static::$fake = $fake;
+        });
+    }
+
+    /**
+     * Run the given callable with actions faked, then restore. Useful to scope fakes to a single test block.
+     */
+    public static function fakeFor(callable $callable, array $actions = []): mixed
+    {
+        $previous = static::$fake;
+
+        static::fake($actions);
+
+        try {
+            return $callable();
+        } finally {
+            static::$fake = $previous;
+        }
+    }
+
+    /**
+     * Run the given callable without the fake active (so actions run for real). Used internally by ActionFake.
+     */
+    public static function runWithoutFake(callable $callable): mixed
+    {
+        $previous = static::$fake;
+
+        static::$fake = null;
+
+        try {
+            return $callable();
+        } finally {
+            static::$fake = $previous;
         }
     }
 
