@@ -2,9 +2,9 @@
 
 namespace Common\Support\Testing;
 
-use Common\Support\Action;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;
+use ReflectionMethod;
 
 class ActionFake
 {
@@ -31,10 +31,15 @@ class ActionFake
     }
 
     /**
-     * Execute the real action (bypass fake so it doesn't re-enter).
+     * Execute the real action without going through Action::execute (so we don't re-enter the fake).
+     * The fake stays active so any other action called from within this one is still intercepted.
      */
     protected function runReal(string $action, array $parameters): mixed
     {
-        return Action::runWithoutFake(fn () => $action::execute(...$parameters));
+        $instance = resolve($action, $parameters);
+
+        $method = new ReflectionMethod($instance, 'handle');
+
+        return $method->invoke($instance);
     }
 }
