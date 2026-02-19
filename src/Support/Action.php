@@ -91,22 +91,6 @@ abstract class Action
     }
 
     /**
-     * Run the given callable without the fake active (so actions run for real). Used internally by ActionFake.
-     */
-    public static function runWithoutFake(callable $callable): mixed
-    {
-        $previous = static::$fake;
-
-        static::$fake = null;
-
-        try {
-            return $callable();
-        } finally {
-            static::$fake = $previous;
-        }
-    }
-
-    /**
      * Normalize parameters passed to static executors by mapping positional arguments
      * to the constructor's parameter names. This ensures compatibility with Laravel's
      * container, which expects an associative array keyed by parameter names.

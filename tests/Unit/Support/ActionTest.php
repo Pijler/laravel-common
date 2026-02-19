@@ -63,7 +63,7 @@ test('it can fake an action using a fixed value', function () {
     expect($this->class::execute())->toBe('value');
 });
 
-test('fakeFor only fakes inside the given callback', function () {
+test('it should fake only inside the given callback', function () {
     expect(function () {
         $this->class::execute();
     })->toThrow(Exception::class);
@@ -79,4 +79,36 @@ test('fakeFor only fakes inside the given callback', function () {
     expect(function () {
         $this->class::execute();
     })->toThrow(Exception::class);
+});
+
+test('it should still fake the nested action when an action calls another action', function () {
+    $innerAction = new class extends Action
+    {
+        protected function handle(): string
+        {
+            return 'inner-real';
+        }
+    };
+
+    $outerAction = new class extends Action
+    {
+        public static string $innerClass;
+
+        protected function handle(): string
+        {
+            return self::$innerClass::execute();
+        }
+    };
+
+    $outerAction::$innerClass = $innerAction::class;
+
+    Action::fake([
+        $innerAction::class => function () {
+            return 'inner-faked';
+        },
+    ]);
+
+    $result = $outerAction::execute();
+
+    expect($result)->toBe('inner-faked');
 });
