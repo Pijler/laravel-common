@@ -12,7 +12,7 @@ if (! function_exists('throw_exception')) {
      */
     function throw_exception(Throwable $exception): void
     {
-        if (check_exception($exception)) {
+        if (check_exception($exception) || $exception instanceof ValidationException) {
             throw $exception;
         }
     }
@@ -26,8 +26,7 @@ if (! function_exists('check_exception')) {
     {
         return $exception instanceof InfoException
             || $exception instanceof ErrorException
-            || $exception instanceof WarningException
-            || $exception instanceof ValidationException;
+            || $exception instanceof WarningException;
     }
 }
 
@@ -41,6 +40,7 @@ if (! function_exists('exception_type')) {
             'InfoException' => Alert::INFO,
             'ErrorException' => Alert::ERROR,
             'WarningException' => Alert::WARNING,
+            default => Alert::ERROR,
         };
     }
 }

@@ -31,10 +31,10 @@ test('it should return true if the exception is an alert exception', function ()
     expect($result)->toBeTrue();
 });
 
-test('it should return true if the exception is a validation exception', function () {
+test('it should return false if the exception is a validation exception', function () {
     $result = check_exception(ValidationException::withMessages(['name' => 'Name is required']));
 
-    expect($result)->toBeTrue();
+    expect($result)->toBeFalse();
 });
 
 test('it should return false if the exception is not an alert exception', function () {
