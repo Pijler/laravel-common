@@ -2,7 +2,6 @@
 
 namespace Common\Exceptions;
 
-use Common\Enum\Alert;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
