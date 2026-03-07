@@ -5,7 +5,7 @@ use Common\Rules\MediaRule;
 beforeEach(function () {
     $this->failMessage = null;
 
-    $this->rule = new MediaRule();
+    $this->rule = new MediaRule;
 
     $this->fail = function (string $message) {
         $this->failMessage = $message;
