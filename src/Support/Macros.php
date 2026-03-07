@@ -4,9 +4,11 @@ namespace Common\Support;
 
 use Common\DTO\ActionData;
 use Common\Enum\Alert;
+use Common\Rules\MediaRule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Testing\TestResponse;
+use Illuminate\Validation\Rules\File;
 
 class Macros
 {
@@ -15,6 +17,10 @@ class Macros
      */
     public static function boot(): void
     {
+        File::macro('media', function () {
+            return new MediaRule(...func_get_args());
+        });
+
         Builder::macro('firstRandom', function () {
             /** @var Builder $this * */
             return $this->inRandomOrder()->first();
