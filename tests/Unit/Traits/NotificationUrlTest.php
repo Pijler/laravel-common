@@ -32,14 +32,14 @@ beforeEach(function () {
     };
 });
 
-it('should generate url on first call', function () {
+test('it should generate url on first call', function () {
     $url = $this->class->callGetCachedURL((object) ['id' => 123]);
 
     expect($this->class->calls)->toBe(1);
     expect($url)->toBe('https://example.com/notify/123');
 });
 
-it('should return cached url on subsequent calls', function () {
+test('it should return cached url on subsequent calls', function () {
     $url1 = $this->class->callGetCachedURL((object) ['id' => 456]);
 
     $url2 = $this->class->callGetCachedURL((object) ['id' => 999]);
