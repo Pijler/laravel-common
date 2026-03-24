@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\Rules\File;
+use Inertia\Response;
 
 class Macros
 {
@@ -92,16 +93,16 @@ class Macros
             return $this->assertSessionHas('session::action', $action->toArray());
         });
 
-        if (class_exists(\Inertia\Response::class)) {
-            \Inertia\Response::macro('filters', function (array $filters = []) {
-                /** @var \Inertia\Response $this * */
+        if (class_exists(Response::class)) {
+            Response::macro('filters', function (array $filters = []) {
+                /** @var Response $this * */
                 return $this->with('filters', collect($filters)->map(function ($value, $key) {
                     return request()->get($key, $value);
                 })->toArray());
             });
 
-            \Inertia\Response::macro('params', function (array $params = []) {
-                /** @var \Inertia\Response $this * */
+            Response::macro('params', function (array $params = []) {
+                /** @var Response $this * */
                 return $this->with('params', collect($params)->merge([
                     'page' => null,
                     'sort' => null,

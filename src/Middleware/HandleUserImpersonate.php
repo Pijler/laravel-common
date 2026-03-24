@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Symfony\Component\HttpFoundation\Response;
+use UserDevices\DeviceCreator;
 
 class HandleUserImpersonate
 {
@@ -43,8 +44,8 @@ class HandleUserImpersonate
      */
     private function ignoreDeviceListener(): void
     {
-        if (class_exists(\UserDevices\DeviceCreator::class)) {
-            \UserDevices\DeviceCreator::ignoreListener();
+        if (class_exists(DeviceCreator::class)) {
+            DeviceCreator::ignoreListener();
         }
     }
 }
