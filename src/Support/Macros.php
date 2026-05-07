@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\Rules\File;
+use Inertia\Inertia;
 use Inertia\Response;
 
 class Macros
@@ -49,6 +50,13 @@ class Macros
 
         RedirectResponse::macro('message', function (string $text, Alert $color) {
             /** @var RedirectResponse $this * */
+            if (class_exists(Inertia::class)) {
+                Inertia::flash('session::alert', [
+                    'text' => $text,
+                    'color' => $color->value,
+                ]);
+            }
+
             return $this->with('session::alert', [
                 'text' => $text,
                 'color' => $color->value,
@@ -57,6 +65,10 @@ class Macros
 
         RedirectResponse::macro('action', function (ActionData $action) {
             /** @var RedirectResponse $this * */
+            if (class_exists(Inertia::class)) {
+                Inertia::flash('session::action', $action->toArray());
+            }
+
             return $this->with('session::action', $action->toArray());
         });
 
@@ -82,22 +94,37 @@ class Macros
 
         TestResponse::macro('assertMessage', function (string $text, Alert $color) {
             /** @var TestResponse $this * */
-            return $this->assertSessionHas('session::alert', [
+            $this->assertSessionHas('session::alert', [
                 'text' => $text,
                 'color' => $color->value,
             ]);
+
+            if ($this->hasMacro('assertInertiaFlash')) {
+                $this->assertInertiaFlash('session::alert', [
+                    'text' => $text,
+                    'color' => $color->value,
+                ]);
+            }
+
+            return $this;
         });
 
         TestResponse::macro('assertAction', function (ActionData $action) {
             /** @var TestResponse $this * */
-            return $this->assertSessionHas('session::action', $action->toArray());
+            $this->assertSessionHas('session::action', $action->toArray());
+
+            if ($this->hasMacro('assertInertiaFlash')) {
+                $this->assertInertiaFlash('session::action', $action->toArray());
+            }
+
+            return $this;
         });
 
         if (class_exists(Response::class)) {
             Response::macro('filters', function (array $filters = []) {
                 /** @var Response $this * */
                 return $this->with('filters', collect($filters)->map(function ($value, $key) {
-                    return request()->get($key, $value);
+                    return request()->input($key, $value);
                 })->toArray());
             });
 
@@ -110,7 +137,7 @@ class Macros
                     'cursor' => null,
                     'search' => null,
                 ])->map(function ($value, $key) {
-                    return request()->get($key, $value);
+                    return request()->input($key, $value);
                 })->toArray());
             });
         }
