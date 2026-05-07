@@ -2,6 +2,7 @@ laravel: "./workbench"
 
 providers:
   - Common\ServiceProvider
+  - Spatie\LaravelData\LaravelDataServiceProvider
   - Spatie\MediaLibrary\MediaLibraryServiceProvider
   - Workbench\App\Providers\WorkbenchServiceProvider
 
