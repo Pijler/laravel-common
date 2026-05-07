@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Model;
  *
  * @mixin Model
  *
- * @method static bool cacheObserverAfterCommit()
  * @method static void whenBooted(callable $callback)
  * @method static void observe(object|string|array $classes)
  */
@@ -22,13 +21,7 @@ trait ModelCache
     public static function bootModelCache(): void
     {
         static::whenBooted(function () {
-            $observer = app(static::modelCacheObserver());
-
-            if (method_exists(static::class, 'cacheObserverAfterCommit')) {
-                $observer->afterCommit = (bool) static::cacheObserverAfterCommit();
-            }
-
-            static::observe($observer);
+            static::observe(static::modelCacheObserver());
         });
     }
 

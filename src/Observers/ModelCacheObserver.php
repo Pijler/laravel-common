@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Cache;
 class ModelCacheObserver
 {
     /**
-     * Delay observer handlers until the active transaction commits.
-     */
-    public bool $afterCommit = true;
-
-    /**
      * Clear model cache after the model is created.
      */
     public function created(Model $model): void
