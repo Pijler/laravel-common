@@ -39,7 +39,7 @@ test('it should execute the action instance', function () {
     })->not->toThrow(Exception::class);
 });
 
-test('it can fake an action using a callback', function () {
+test('it should fake an action using a callback', function () {
     expect(function () {
         $this->class::execute();
     })->toThrow(Exception::class);
@@ -51,7 +51,7 @@ test('it can fake an action using a callback', function () {
     expect($this->class::execute())->toBe('ok');
 });
 
-test('it can fake an action using a fixed value', function () {
+test('it should fake an action using a fixed value', function () {
     expect(function () {
         $this->class::execute();
     })->toThrow(Exception::class);
