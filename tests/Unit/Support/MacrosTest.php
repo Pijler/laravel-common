@@ -82,9 +82,9 @@ test('it should merge pagination keys and use request input for Inertia Response
     ]);
 });
 
-test('it should flash session alert via Inertia for RedirectResponse message macro', function () {
+test('it should flash alert via Inertia for RedirectResponse message macro', function () {
     $this->mock(ResponseFactory::class, function ($mock) {
-        $mock->shouldReceive('flash')->once()->with('session::alert', [
+        $mock->shouldReceive('flash')->once()->with('alert', [
             'text' => 'Hello',
             'color' => enum_value(Alert::INFO),
         ]);
@@ -98,7 +98,7 @@ test('it should flash session alert via Inertia for RedirectResponse message mac
     ]);
 });
 
-test('it should flash session action via Inertia for RedirectResponse action macro', function () {
+test('it should flash action via Inertia for RedirectResponse action macro', function () {
     $action = new ActionData(
         url: '/target',
         method: 'post',
@@ -109,7 +109,7 @@ test('it should flash session action via Inertia for RedirectResponse action mac
     $payload = $action->toArray();
 
     $this->mock(ResponseFactory::class, function ($mock) use ($payload) {
-        $mock->shouldReceive('flash')->once()->with('session::action', $payload);
+        $mock->shouldReceive('flash')->once()->with('action', $payload);
     });
 
     $redirect = redirect('/')->action($action);
@@ -122,7 +122,7 @@ test('it should call assertInertiaFlash from assertMessage when that macro exist
 
     TestResponse::macro('assertInertiaFlash', function (string $key, array $expected) use (&$called) {
         $called = true;
-        expect($key)->toBe('session::alert');
+        expect($key)->toBe('alert');
         expect($expected)->toMatchArray([
             'text' => 'Hi',
             'color' => enum_value(Alert::INFO),
@@ -154,7 +154,7 @@ test('it should call assertInertiaFlash from assertAction when that macro exists
 
     TestResponse::macro('assertInertiaFlash', function (string $key, array $expected) use (&$called, $action) {
         $called = true;
-        expect($key)->toBe('session::action');
+        expect($key)->toBe('action');
         expect($expected)->toMatchArray($action->toArray());
 
         return $this;

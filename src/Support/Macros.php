@@ -51,7 +51,7 @@ class Macros
         RedirectResponse::macro('message', function (string $text, Alert $color) {
             /** @var RedirectResponse $this * */
             if (class_exists(Inertia::class)) {
-                Inertia::flash('session::alert', [
+                Inertia::flash('alert', [
                     'text' => $text,
                     'color' => $color->value,
                 ]);
@@ -66,7 +66,7 @@ class Macros
         RedirectResponse::macro('action', function (ActionData $action) {
             /** @var RedirectResponse $this * */
             if (class_exists(Inertia::class)) {
-                Inertia::flash('session::action', $action->toArray());
+                Inertia::flash('action', $action->toArray());
             }
 
             return $this->with('session::action', $action->toArray());
@@ -100,7 +100,7 @@ class Macros
             ]);
 
             if ($this->hasMacro('assertInertiaFlash')) {
-                $this->assertInertiaFlash('session::alert', [
+                $this->assertInertiaFlash('alert', [
                     'text' => $text,
                     'color' => $color->value,
                 ]);
@@ -114,7 +114,7 @@ class Macros
             $this->assertSessionHas('session::action', $action->toArray());
 
             if ($this->hasMacro('assertInertiaFlash')) {
-                $this->assertInertiaFlash('session::action', $action->toArray());
+                $this->assertInertiaFlash('action', $action->toArray());
             }
 
             return $this;
