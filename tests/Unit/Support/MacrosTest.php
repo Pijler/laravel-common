@@ -13,9 +13,6 @@ use Workbench\App\Models\User;
 
 use function Illuminate\Support\enum_value;
 
-/**
- * @return array<string, mixed>
- */
 function inertiaTestPageProps(InertiaResponse $response): array
 {
     $reflection = new ReflectionClass($response);
@@ -69,6 +66,7 @@ test('it should merge pagination keys and use request input for Inertia Response
         'page' => '3',
         'search' => 'needle',
     ]);
+
     $this->app->instance('request', $request);
 
     $response = Inertia::render('List', [])->params([]);
@@ -133,28 +131,25 @@ test('it should call assertInertiaFlash from assertMessage when that macro exist
         return $this;
     });
 
-    try {
-        $user = User::factory()->make();
-        $user->id = 1;
+    $user = User::firstRandom();
 
-        $this->actingAs($user)
-            ->withSession([
-                'session::alert' => [
-                    'text' => 'Hi',
-                    'color' => enum_value(Alert::INFO),
-                ],
-            ])
-            ->get('/')
-            ->assertMessage('Hi', Alert::INFO);
+    $response = $this->actingAs($user)->withSession([
+        'session::alert' => [
+            'text' => 'Hi',
+            'color' => enum_value(Alert::INFO),
+        ],
+    ])->get('/');
 
-        expect($called)->toBeTrue();
-    } finally {
-        removeTestResponseMacro('assertInertiaFlash');
-    }
+    $response->assertMessage('Hi', Alert::INFO);
+
+    expect($called)->toBeTrue();
+
+    removeTestResponseMacro('assertInertiaFlash');
 });
 
 test('it should call assertInertiaFlash from assertAction when that macro exists', function () {
     $called = false;
+
     $action = new ActionData(url: '/go', text: 'Go');
 
     TestResponse::macro('assertInertiaFlash', function (string $key, array $expected) use (&$called, $action) {
@@ -165,17 +160,15 @@ test('it should call assertInertiaFlash from assertAction when that macro exists
         return $this;
     });
 
-    try {
-        $user = User::factory()->make();
-        $user->id = 1;
+    $user = User::firstRandom();
 
-        $this->actingAs($user)
-            ->withSession(['session::action' => $action->toArray()])
-            ->get('/')
-            ->assertAction($action);
+    $response = $this->actingAs($user)->withSession([
+        'session::action' => $action->toArray(),
+    ])->get('/');
 
-        expect($called)->toBeTrue();
-    } finally {
-        removeTestResponseMacro('assertInertiaFlash');
-    }
+    $response->assertAction($action);
+
+    expect($called)->toBeTrue();
+
+    removeTestResponseMacro('assertInertiaFlash');
 });
