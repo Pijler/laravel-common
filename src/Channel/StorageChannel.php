@@ -45,9 +45,21 @@ class StorageChannel
      */
     protected function saveInDatabase($notifiable, Notification $notification): mixed
     {
-        return $notifiable->routeNotificationFor('database', $notification)->updateOrCreate([
+        return $this->resolveRelation($notifiable, $notification)->updateOrCreate([
             'id' => $notification->id,
         ], $this->buildPayload($notification));
+    }
+
+    /**
+     * Resolve where the notification should be persisted.
+     */
+    protected function resolveRelation($notifiable, Notification $notification): mixed
+    {
+        if (method_exists($notification, 'storageRelation')) {
+            return $notification->storageRelation($notifiable);
+        }
+
+        return $notifiable;
     }
 
     /**

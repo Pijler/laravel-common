@@ -137,6 +137,20 @@ class WelcomeNotification extends Notification
         return ['storage'];
     }
 }
+
+// Customize the model/relation per notification
+class InvoiceStoredNotification extends Notification
+{
+    public function via($notifiable)
+    {
+        return ['storage'];
+    }
+
+    public function storageRelation($notifiable)
+    {
+        return $notifiable->archivedEmails();
+    }
+}
 ```
 
 #### 🛠️ Macros
