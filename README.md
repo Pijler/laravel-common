@@ -1,4 +1,10 @@
-# 📌 Laravel Common
+<p align="center">
+<img src="https://raw.githubusercontent.com/Pijler/docs/main/assets/pijler-icon-dark.svg" height="100" alt="Pijler logo">
+</p>
+
+<h2><p align="center">Laravel Common</p></h2>
+
+### 🚀 Introduction
 
 A Laravel package that contains common functionalities I use in almost all projects I develop. This package includes traits, helpers, macros, commands, and other utilities that speed up development.
 
@@ -389,6 +395,6 @@ class ProcessDataJob implements ShouldQueue
 
 Open-source under the [MIT license](LICENSE).
 
-## 🚀 Thanks!
+### 🚀 Thanks!
 
 _This package contains common functionalities I use in my Laravel projects. Feel free to use and contribute!_
