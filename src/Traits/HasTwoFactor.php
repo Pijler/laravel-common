@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Traits;
+namespace Pijler\LaravelCommon\Traits;
 
 use BaconQrCode\Renderer\Color\Rgb;
 use BaconQrCode\Renderer\Image\SvgImageBackEnd;
@@ -8,9 +8,9 @@ use BaconQrCode\Renderer\ImageRenderer;
 use BaconQrCode\Renderer\RendererStyle\Fill;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
-use Common\Support\TwoFactor\RecoveryCode;
-use Common\Support\TwoFactor\TwoFactorAuthentication;
 use Illuminate\Support\Str;
+use Pijler\LaravelCommon\Support\TwoFactor\RecoveryCode;
+use Pijler\LaravelCommon\Support\TwoFactor\TwoFactorAuthentication;
 
 trait HasTwoFactor
 {

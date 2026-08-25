@@ -1,14 +1,14 @@
 <?php
 
-use Common\DTO\ActionData;
-use Common\Enum\Alert;
-use Common\Rules\MediaRule;
 use Illuminate\Http\Request;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\Rules\File;
 use Inertia\Inertia;
 use Inertia\Response as InertiaResponse;
 use Inertia\ResponseFactory;
+use Pijler\LaravelCommon\DTO\ActionData;
+use Pijler\LaravelCommon\Enum\Alert;
+use Pijler\LaravelCommon\Rules\MediaRule;
 use Workbench\App\Models\User;
 
 use function Illuminate\Support\enum_value;

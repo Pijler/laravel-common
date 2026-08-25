@@ -1,19 +1,19 @@
 <?php
 
-namespace Common;
+namespace Pijler\LaravelCommon;
 
-use Common\Channel\StorageChannel;
-use Common\Commands\FileDecryptCommand;
-use Common\Commands\FileEncryptCommand;
-use Common\Commands\RenameMigrationsCommand;
-use Common\Middleware\HandleUserImpersonate;
-use Common\Middleware\ProtectFromImpersonation;
-use Common\Support\Macros;
 use Illuminate\Notifications\ChannelManager;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\ServiceProvider as LaravelServiceProvider;
+use Pijler\LaravelCommon\Channel\StorageChannel;
+use Pijler\LaravelCommon\Commands\FileDecryptCommand;
+use Pijler\LaravelCommon\Commands\FileEncryptCommand;
+use Pijler\LaravelCommon\Commands\RenameMigrationsCommand;
+use Pijler\LaravelCommon\Middleware\HandleUserImpersonate;
+use Pijler\LaravelCommon\Middleware\ProtectFromImpersonation;
+use Pijler\LaravelCommon\Support\Macros;
 
 class ServiceProvider extends LaravelServiceProvider
 {

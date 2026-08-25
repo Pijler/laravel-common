@@ -1,6 +1,6 @@
 <?php
 
-use Common\Support\TwoFactor\TwoFactorAuthentication;
+use Pijler\LaravelCommon\Support\TwoFactor\TwoFactorAuthentication;
 use PragmaRX\Google2FA\Google2FA;
 use Workbench\App\Models\User;
 

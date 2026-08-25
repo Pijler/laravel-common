@@ -1,9 +1,9 @@
 <?php
 
-namespace Common\Traits;
+namespace Pijler\LaravelCommon\Traits;
 
-use Common\Observers\ModelCacheObserver;
 use Illuminate\Database\Eloquent\Model;
+use Pijler\LaravelCommon\Observers\ModelCacheObserver;
 
 /**
  * Clears cache on model create/update/delete/restore.

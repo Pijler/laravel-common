@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Exceptions;
+namespace Pijler\LaravelCommon\Exceptions;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;

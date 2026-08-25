@@ -2,10 +2,10 @@
 
 namespace Workbench\App\Models;
 
-use Common\Traits\HasImpersonate;
-use Common\Traits\HasTwoFactor;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Pijler\LaravelCommon\Traits\HasImpersonate;
+use Pijler\LaravelCommon\Traits\HasTwoFactor;
 
 class User extends Authenticatable
 {

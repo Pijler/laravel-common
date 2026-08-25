@@ -1,7 +1,7 @@
 <?php
 
-use Common\Support\Media\CustomPathGenerator;
 use Illuminate\Support\Facades\Config;
+use Pijler\LaravelCommon\Support\Media\CustomPathGenerator;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 beforeEach(function () {

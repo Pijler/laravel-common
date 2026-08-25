@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Commands;
+namespace Pijler\LaravelCommon\Commands;
 
 use Exception;
 use Illuminate\Console\Command;

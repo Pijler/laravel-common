@@ -1,9 +1,9 @@
 <?php
 
-namespace Common\Commands;
+namespace Pijler\LaravelCommon\Commands;
 
-use Common\Support\Migrations\RenameMigrations;
 use Illuminate\Console\Command;
+use Pijler\LaravelCommon\Support\Migrations\RenameMigrations;
 
 class RenameMigrationsCommand extends Command
 {

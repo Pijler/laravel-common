@@ -1,6 +1,6 @@
 <?php
 
-use Common\Support\Action;
+use Pijler\LaravelCommon\Support\Action;
 
 beforeEach(function () {
     Action::restore();

@@ -2,11 +2,11 @@
 
 namespace Workbench\Database\Factories;
 
-use Common\Support\TwoFactor\RecoveryCode;
-use Common\Support\TwoFactor\TwoFactorAuthentication;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use Pijler\LaravelCommon\Support\TwoFactor\RecoveryCode;
+use Pijler\LaravelCommon\Support\TwoFactor\TwoFactorAuthentication;
 use Workbench\App\Models\User;
 
 class UserFactory extends Factory

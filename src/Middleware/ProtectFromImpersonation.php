@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Middleware;
+namespace Pijler\LaravelCommon\Middleware;
 
 use Closure;
 use Illuminate\Http\RedirectResponse;

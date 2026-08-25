@@ -1,6 +1,6 @@
 <?php
 
-use Common\Traits\NotificationUrl;
+use Pijler\LaravelCommon\Traits\NotificationUrl;
 
 beforeEach(function () {
     $this->class = new class

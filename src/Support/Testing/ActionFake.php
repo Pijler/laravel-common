@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Support\Testing;
+namespace Pijler\LaravelCommon\Support\Testing;
 
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\Arr;

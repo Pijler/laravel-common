@@ -1,8 +1,8 @@
 <?php
 
-use Common\Channel\StorageChannel;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Notifications\Notification;
+use Pijler\LaravelCommon\Channel\StorageChannel;
 
 test('it should return the notifiable when storageRelation is not defined', function () {
     $channel = new StorageChannel;

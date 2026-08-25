@@ -1,6 +1,6 @@
 <?php
 
-use Common\Rules\MediaRule;
+use Pijler\LaravelCommon\Rules\MediaRule;
 
 beforeEach(function () {
     $this->failMessage = null;

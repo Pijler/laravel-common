@@ -1,6 +1,6 @@
 <?php
 
-use Common\Enum\Alert;
+use Pijler\LaravelCommon\Enum\Alert;
 
 test('it should get enum translation', function () {
     expect(Alert::INFO->trans())->toBe('enum.alert.info');

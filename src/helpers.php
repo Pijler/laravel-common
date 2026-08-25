@@ -1,10 +1,10 @@
 <?php
 
-use Common\Enum\Alert;
-use Common\Exceptions\Alert\ErrorException;
-use Common\Exceptions\Alert\InfoException;
-use Common\Exceptions\Alert\WarningException;
 use Illuminate\Validation\ValidationException;
+use Pijler\LaravelCommon\Enum\Alert;
+use Pijler\LaravelCommon\Exceptions\Alert\ErrorException;
+use Pijler\LaravelCommon\Exceptions\Alert\InfoException;
+use Pijler\LaravelCommon\Exceptions\Alert\WarningException;
 
 if (! function_exists('throw_exception')) {
     /**

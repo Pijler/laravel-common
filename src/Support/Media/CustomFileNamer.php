@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Support\Media;
+namespace Pijler\LaravelCommon\Support\Media;
 
 use Illuminate\Support\Str;
 use Spatie\MediaLibrary\Conversions\Conversion;

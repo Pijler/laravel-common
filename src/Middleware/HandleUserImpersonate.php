@@ -1,13 +1,13 @@
 <?php
 
-namespace Common\Middleware;
+namespace Pijler\LaravelCommon\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Pijler\UserDevices\DeviceCreator;
 use Symfony\Component\HttpFoundation\Response;
-use UserDevices\DeviceCreator;
 
 class HandleUserImpersonate
 {

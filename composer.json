@@ -33,7 +33,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Common\\": "src/"
+            "Pijler\\LaravelCommon\\": "src/"
         },
         "files": [
             "src/helpers.php"
@@ -70,7 +70,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Common\\ServiceProvider"
+                "Pijler\\LaravelCommon\\ServiceProvider"
             ]
         }
     },
