@@ -1,6 +1,6 @@
 <?php
 
-use Common\Traits\ActionCache;
+use Pijler\LaravelCommon\Traits\ActionCache;
 
 beforeEach(function () {
     $this->class = new class

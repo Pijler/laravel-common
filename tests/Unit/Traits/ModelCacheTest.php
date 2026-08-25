@@ -1,8 +1,8 @@
 <?php
 
-use Common\Observers\ModelCacheObserver;
-use Common\Traits\ModelCache;
 use Illuminate\Support\Facades\Cache;
+use Pijler\LaravelCommon\Observers\ModelCacheObserver;
+use Pijler\LaravelCommon\Traits\ModelCache;
 use Workbench\App\Models\User;
 
 beforeEach(function () {

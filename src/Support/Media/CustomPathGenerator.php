@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Support\Media;
+namespace Pijler\LaravelCommon\Support\Media;
 
 use Closure;
 use Illuminate\Support\Facades\App;

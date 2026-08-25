@@ -25,7 +25,7 @@ The package will be automatically discovered by Laravel.
 Abstract base class for executing actions in a clean and organized way:
 
 ```php
-use Common\Support\Action;
+use Pijler\LaravelCommon\Support\Action;
 
 class CreateUserAction extends Action
 {
@@ -59,7 +59,7 @@ CreateUserAction::executeUnless($shouldNotCreate, 'João Pedro', 'joao@example.c
 Trait for implementing two-factor authentication:
 
 ```php
-use Common\Traits\HasTwoFactor;
+use Pijler\LaravelCommon\Traits\HasTwoFactor;
 
 class User extends Model
 {
@@ -87,7 +87,7 @@ $url = $user->twoFactorQrCodeUrl();
 Class for detecting browser and device information:
 
 ```php
-use Common\Support\Agent;
+use Pijler\LaravelCommon\Support\Agent;
 
 $agent = new Agent();
 
@@ -108,10 +108,10 @@ $agent->platform(); // Windows, macOS, Linux, etc.
 Alert system with typed exceptions:
 
 ```php
-use Common\Enum\Alert;
-use Common\Exceptions\Alert\InfoException;
-use Common\Exceptions\Alert\ErrorException;
-use Common\Exceptions\Alert\WarningException;
+use Pijler\LaravelCommon\Enum\Alert;
+use Pijler\LaravelCommon\Exceptions\Alert\InfoException;
+use Pijler\LaravelCommon\Exceptions\Alert\ErrorException;
+use Pijler\LaravelCommon\Exceptions\Alert\WarningException;
 
 // Throw alert exceptions
 InfoException::make('Info Message!');
@@ -128,7 +128,7 @@ throw_exception($exception); // void
 Notification channel that saves emails to files and database:
 
 ```php
-use Common\Channel\StorageChannel;
+use Pijler\LaravelCommon\Channel\StorageChannel;
 
 // Configure callback for custom path
 StorageChannel::storagePathUsing(function ($notification) {
@@ -323,7 +323,7 @@ The decrypted file will be saved without the `.encrypted` extension.
 Trait for enums with useful methods:
 
 ```php
-use Common\Traits\EnumMethods;
+use Pijler\LaravelCommon\Traits\EnumMethods;
 
 enum Status: string
 {
@@ -350,7 +350,7 @@ Extensions for Spatie Media Library:
 Trait for generating notification URLs:
 
 ```php
-use Common\Traits\NotificationUrl;
+use Pijler\LaravelCommon\Traits\NotificationUrl;
 
 class User extends Model
 {
@@ -366,7 +366,7 @@ $url = $user->notificationUrl($notification);
 Trait for adding useful methods to Eloquent Builders:
 
 ```php
-use Common\Traits\HasBuilder;
+use Pijler\LaravelCommon\Traits\HasBuilder;
 
 class User extends Model
 {
@@ -383,7 +383,7 @@ User::query()->whereInactive();
 Trait for working with Laravel Horizon:
 
 ```php
-use Common\Traits\HorizonQueue;
+use Pijler\LaravelCommon\Traits\HorizonQueue;
 
 class ProcessDataJob implements ShouldQueue
 {

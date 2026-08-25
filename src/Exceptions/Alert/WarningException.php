@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Exceptions\Alert;
+namespace Pijler\LaravelCommon\Exceptions\Alert;
 
 use Exception;
 

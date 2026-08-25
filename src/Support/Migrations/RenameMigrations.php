@@ -1,10 +1,10 @@
 <?php
 
-namespace Common\Support\Migrations;
+namespace Pijler\LaravelCommon\Support\Migrations;
 
-use Common\Support\Action;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Pijler\LaravelCommon\Support\Action;
 use Symfony\Component\Finder\SplFileInfo;
 
 class RenameMigrations extends Action

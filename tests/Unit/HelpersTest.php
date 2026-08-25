@@ -1,9 +1,9 @@
 <?php
 
-use Common\Exceptions\Alert\ErrorException;
-use Common\Exceptions\Alert\InfoException;
-use Common\Exceptions\Alert\WarningException;
 use Illuminate\Validation\ValidationException;
+use Pijler\LaravelCommon\Exceptions\Alert\ErrorException;
+use Pijler\LaravelCommon\Exceptions\Alert\InfoException;
+use Pijler\LaravelCommon\Exceptions\Alert\WarningException;
 
 test('it should throw an exception if the exception is an alert exception - info', function () {
     throw_exception(InfoException::make('Info exception'));

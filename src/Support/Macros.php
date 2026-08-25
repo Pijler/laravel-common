@@ -1,16 +1,16 @@
 <?php
 
-namespace Common\Support;
+namespace Pijler\LaravelCommon\Support;
 
-use Common\DTO\ActionData;
-use Common\Enum\Alert;
-use Common\Rules\MediaRule;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Testing\TestResponse;
 use Illuminate\Validation\Rules\File;
 use Inertia\Inertia;
 use Inertia\Response;
+use Pijler\LaravelCommon\DTO\ActionData;
+use Pijler\LaravelCommon\Enum\Alert;
+use Pijler\LaravelCommon\Rules\MediaRule;
 
 class Macros
 {

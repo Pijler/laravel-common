@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Traits;
+namespace Pijler\LaravelCommon\Traits;
 
 use Closure;
 use Illuminate\Database\Eloquent\Builder;

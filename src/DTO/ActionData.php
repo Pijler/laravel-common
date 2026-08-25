@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\DTO;
+namespace Pijler\LaravelCommon\DTO;
 
 use Spatie\LaravelData\Data;
 

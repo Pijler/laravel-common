@@ -1,7 +1,7 @@
 <?php
 
-use Common\Support\Media\CustomFileNamer;
 use Illuminate\Support\Str;
+use Pijler\LaravelCommon\Support\Media\CustomFileNamer;
 use Spatie\MediaLibrary\Conversions\Conversion;
 
 beforeEach(function () {

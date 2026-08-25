@@ -1,8 +1,8 @@
 <?php
 
-namespace Common\Enum;
+namespace Pijler\LaravelCommon\Enum;
 
-use Common\Traits\EnumMethods;
+use Pijler\LaravelCommon\Traits\EnumMethods;
 
 enum Alert: string
 {

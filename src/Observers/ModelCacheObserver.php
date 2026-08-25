@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Observers;
+namespace Pijler\LaravelCommon\Observers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;

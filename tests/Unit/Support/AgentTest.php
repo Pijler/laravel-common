@@ -1,6 +1,6 @@
 <?php
 
-use Common\Support\Agent;
+use Pijler\LaravelCommon\Support\Agent;
 
 test('it should get agent (Chrome)', function () {
     $chrome = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_5_9) AppleWebKit/5351 (KHTML, like Gecko) Chrome/38.0.872.0 Mobile Safari/5351';

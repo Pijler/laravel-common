@@ -1,6 +1,6 @@
 <?php
 
-use Common\Support\TwoFactor\RecoveryCode;
+use Pijler\LaravelCommon\Support\TwoFactor\RecoveryCode;
 
 test('it should generate a new recovery code', function () {
     $recoveryCode = RecoveryCode::generate();

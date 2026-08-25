@@ -1,8 +1,8 @@
 <?php
 
-namespace Common\Support;
+namespace Pijler\LaravelCommon\Support;
 
-use Common\Support\Testing\ActionFake;
+use Pijler\LaravelCommon\Support\Testing\ActionFake;
 use ReflectionClass;
 
 abstract class Action

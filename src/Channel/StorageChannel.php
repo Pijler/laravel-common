@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Channel;
+namespace Pijler\LaravelCommon\Channel;
 
 use Closure;
 use Illuminate\Notifications\Messages\MailMessage;

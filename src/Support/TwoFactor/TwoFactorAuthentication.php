@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Support\TwoFactor;
+namespace Pijler\LaravelCommon\Support\TwoFactor;
 
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Cache;

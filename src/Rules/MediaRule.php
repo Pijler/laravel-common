@@ -1,6 +1,6 @@
 <?php
 
-namespace Common\Rules;
+namespace Pijler\LaravelCommon\Rules;
 
 use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
