@@ -10,8 +10,6 @@ trait HorizonQueue
     public function onLowPriority(): void
     {
         $this->onQueue('low-priority');
-
-        $this->onConnection(config('queue.long_connection'));
     }
 
     /**
@@ -20,8 +18,6 @@ trait HorizonQueue
     public function onMediumPriority(): void
     {
         $this->onQueue('medium-priority');
-
-        $this->onConnection(config('queue.medium_connection'));
     }
 
     /**
@@ -30,7 +26,5 @@ trait HorizonQueue
     public function onHighPriority(): void
     {
         $this->onQueue('high-priority');
-
-        $this->onConnection(config('queue.short_connection'));
     }
 }
